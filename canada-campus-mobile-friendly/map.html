@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Campus Map | Campus Finder Canada</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  body { font-family: 'Inter', sans-serif; }
+  header h1 { background: linear-gradient(90deg,#1E3A8A,#3B82F6); -webkit-background-clip: text; color: transparent; }
+</style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+
+<header class="bg-white shadow-md sticky top-0 z-50">
+  <nav class="container mx-auto flex flex-wrap justify-between items-center p-4">
+    <h1 class="text-3xl font-extrabold text-blue-700">Campus Finder Canada</h1>
+    <div class="flex gap-4 mt-2 md:mt-0 flex-wrap text-gray-700">
+      <a href="index.html" class="hover:text-blue-700">Home</a>
+      <a href="universities.html" class="hover:text-blue-700">Universities</a>
+      <a href="map.html" class="hover:text-blue-700">Map</a>
+      <a href="about.html" class="hover:text-blue-700">About</a>
+    </div>
+  </nav>
+</header>
+
+<main class="flex flex-col md:flex-row container mx-auto py-6 px-4 gap-4">
+  <!-- Filter Panel -->
+  <div class="bg-white p-4 md:p-6 rounded-2xl shadow w-full md:w-1/4">
+    <h2 class="text-lg md:text-xl font-semibold mb-4">Filters</h2>
+    <select id="province" class="border rounded p-2 w-full mb-3">
+      <option value="">All</option>
+      <option value="Ontario">Ontario</option>
+      <option value="British Columbia">British Columbia</option>
+      <option value="Quebec">Quebec</option>
+      <option value="Alberta">Alberta</option>
+    </select>
+    <input type="range" id="tuition" class="w-full mb-2">
+    <span id="tuitionVal" class="text-sm">Up to ≈ $15000</span>
+  </div>
+
+  <!-- Map -->
+  <div id="map" class="w-full md:w-3/4 h-[60vh] md:h-[80vh] rounded-2xl shadow"></div>
+</main>
+
+<script type="module">
+  import { universities } from "./data/universities.js";
+
+  const map = L.map("map").setView([56.1304, -106.3468], 4);
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", { attribution: "© OpenStreetMap contributors" }).addTo(map);
+  const markerGroup = L.layerGroup().addTo(map);
+
+  function renderMarkers(filtered) {
+    markerGroup.clearLayers();
+    filtered.forEach(u => {
+      L.marker([u.lat, u.lng])
+        .addTo(markerGroup)
+        .bindPopup(`<b>${u.name}</b><br>${u.city}, ${u.province}<br>Tuition: ≈ $${u.tuition}<br>Ranking #${u.ranking}`);
+    });
+  }
+
+  renderMarkers(universities);
+
+  const provinceSelect = document.getElementById("province");
+  const tuitionRange = document.getElementById("tuition");
+  const tuitionVal = document.getElementById("tuitionVal");
+
+  tuitionRange.addEventListener("input", () => {
+    tuitionVal.textContent = `Up to ≈ $${tuitionRange.value}`;
+    applyFilters();
+  });
+  provinceSelect.addEventListener("change", applyFilters);
+
+  function applyFilters() {
+    const province = provinceSelect.value;
+    const maxTuition = parseInt(tuitionRange.value || 15000);
+    const filtered = universities.filter(u => (!province || u.province === province) && u.tuition <= maxTuition);
+    renderMarkers(filtered);
+  }
+</script>
+
+<footer class="text-center py-6 text-gray-500 border-t mt-16">
+  Built by Jeo • © 2025 Campus Finder Canada
+</footer>
+</body>
+</html>

@@ -1,0 +1,122 @@
+export const universities = [
+  {
+    id: 1,
+    name: "University of Toronto",
+    province: "Ontario",
+    city: "Toronto",
+    tuition: 11000,
+    ranking: 1,
+    lat: 43.6629,
+    lng: -79.3957,
+    website: "https://www.utoronto.ca/",
+    description: "Canada’s top-ranked university known for global research excellence and vibrant campus life."
+  },
+  {
+    id: 2,
+    name: "University of British Columbia",
+    province: "British Columbia",
+    city: "Vancouver",
+    tuition: 9500,
+    ranking: 2,
+    lat: 49.2606,
+    lng: -123.246,
+    website: "https://www.ubc.ca/",
+    description: "A leader in sustainability and innovation, surrounded by nature and ocean views."
+  },
+  {
+    id: 3,
+    name: "McGill University",
+    province: "Quebec",
+    city: "Montreal",
+    tuition: 8000,
+    ranking: 3,
+    lat: 45.5048,
+    lng: -73.5772,
+    website: "https://www.mcgill.ca/",
+    description: "Prestigious bilingual university offering strong programs in medicine, law, and engineering."
+  },
+  {
+    id: 4,
+    name: "University of Alberta",
+    province: "Alberta",
+    city: "Edmonton",
+    tuition: 7500,
+    ranking: 4,
+    lat: 53.5232,
+    lng: -113.5263,
+    website: "https://www.ualberta.ca/",
+    description: "A major research institution known for energy, science, and health innovation."
+  },
+  {
+    id: 5,
+    name: "University of Calgary",
+    province: "Alberta",
+    city: "Calgary",
+    tuition: 7200,
+    ranking: 5,
+    lat: 51.077,
+    lng: -114.1312,
+    website: "https://www.ucalgary.ca/",
+    description: "Dynamic and entrepreneurial university located near the Rocky Mountains."
+  },
+  {
+    id: 6,
+    name: "Western University",
+    province: "Ontario",
+    city: "London",
+    tuition: 8500,
+    ranking: 6,
+    lat: 43.0096,
+    lng: -81.2737,
+    website: "https://www.uwo.ca/",
+    description: "One of Canada’s oldest universities, known for business and health sciences."
+  },
+  {
+    id: 7,
+    name: "Queen’s University",
+    province: "Ontario",
+    city: "Kingston",
+    tuition: 8800,
+    ranking: 7,
+    lat: 44.2253,
+    lng: -76.4951,
+    website: "https://www.queensu.ca/",
+    description: "Historic campus offering top-tier academics and strong student community."
+  },
+  {
+    id: 8,
+    name: "Simon Fraser University",
+    province: "British Columbia",
+    city: "Burnaby",
+    tuition: 7400,
+    ranking: 8,
+    lat: 49.2781,
+    lng: -122.9199,
+    website: "https://www.sfu.ca/",
+    description: "Public research university emphasizing innovation and interdisciplinary learning."
+  },
+  {
+    id: 9,
+    name: "McMaster University",
+    province: "Ontario",
+    city: "Hamilton",
+    tuition: 8200,
+    ranking: 9,
+    lat: 43.2609,
+    lng: -79.9192,
+    website: "https://www.mcmaster.ca/",
+    description: "Known globally for medical research and problem-based learning model."
+  },
+  {
+    id: 10,
+    name: "Dalhousie University",
+    province: "Nova Scotia",
+    city: "Halifax",
+    tuition: 7800,
+    ranking: 10,
+    lat: 44.637,
+    lng: -63.5917,
+    website: "https://www.dal.ca/",
+    description: "Atlantic Canada’s leading university with a strong emphasis on community and research."
+  }
+];

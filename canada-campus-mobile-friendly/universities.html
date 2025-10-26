@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Universities | Campus Finder Canada</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script type="module" src="data/universities.js"></script>
+</head>
+<body class="bg-gray-50 text-gray-900">
+  <header class="bg-white shadow-md sticky top-0">
+    <nav class="container mx-auto flex justify-between items-center p-4">
+      <h1 class="text-2xl font-bold text-blue-700">🎓 Campus Finder Canada</h1>
+      <div class="flex gap-6 text-gray-700">
+        <a href="index.html" class="hover:text-blue-700">Home</a>
+        <a href="universities.html" class="hover:text-blue-700">Universities</a>
+        <a href="map.html" class="hover:text-blue-700">Map</a>
+        <a href="about.html" class="hover:text-blue-700">About</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container mx-auto py-10 px-4">
+    <h2 class="text-3xl font-bold mb-4 text-center">Canadian Universities</h2>
+    <input id="search" placeholder="Search by name..." class="border p-2 w-full mb-6 rounded-md">
+    <div id="universityList" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+  </main>
+
+  <script type="module">
+    import { universities } from "./data/universities.js";
+    const list = document.getElementById("universityList");
+    const search = document.getElementById("search");
+
+    function render(listData) {
+      list.innerHTML = listData.map(u => `
+        <div class="bg-white p-5 rounded-xl shadow hover:shadow-lg transition">
+          <h3 class="text-xl font-semibold text-blue-700">${u.name}</h3>
+          <p class="text-sm text-gray-600 mb-2">${u.city}, ${u.province}</p>
+          <p><b>Tuition:</b> ≈ $${u.tuition}</p>
+          <p><b>Ranking:</b> #${u.ranking}</p>
+          <p class="text-gray-700 mt-2">${u.description}</p>
+          <a href="${u.website}" target="_blank" class="text-blue-600 underline mt-2 block">Visit Website</a>
+        </div>
+      `).join('');
+    }
+
+    render(universities);
+    search.addEventListener("input", e => {
+      const val = e.target.value.toLowerCase();
+      render(universities.filter(u => u.name.toLowerCase().includes(val)));
+    });
+  </script>
+</body>
+</html>
